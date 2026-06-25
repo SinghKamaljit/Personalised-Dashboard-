@@ -901,11 +901,17 @@ function escHtml(str) {
   return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+function decodeHtmlEntities(str) {
+  var txt = document.createElement('textarea');
+  txt.innerHTML = str || '';
+  return txt.value;
+}
+
 function buildNewsHtml(items, region) {
   var html = '<ul class="news-list">';
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
-    var title = escHtml(item.title || 'No title');
+    var title = escHtml(decodeHtmlEntities(item.title || 'No title'));
     var link  = item.link || '#';
     var date  = item.pubDate
       ? new Date(item.pubDate).toLocaleDateString('en-IN', { day:'numeric', month:'short' })
