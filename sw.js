@@ -1,4 +1,4 @@
-const CACHE='smart-dashboard-v4';
+const CACHE='smart-dashboard-v5';
 self.addEventListener('install',e=>{self.skipWaiting();});
 self.addEventListener('activate',e=>{
  e.waitUntil(

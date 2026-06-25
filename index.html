@@ -907,11 +907,18 @@ function decodeHtmlEntities(str) {
   return txt.value;
 }
 
+function safeTitle(str) {
+  // Decode any HTML entities from the feed, then re-escape only < and >
+  // We must NOT re-escape & because decoded curly quotes etc. are plain chars
+  var decoded = decodeHtmlEntities(str || 'No title');
+  return decoded.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 function buildNewsHtml(items, region) {
   var html = '<ul class="news-list">';
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
-    var title = escHtml(decodeHtmlEntities(item.title || 'No title'));
+    var title = safeTitle(item.title);
     var link  = item.link || '#';
     var date  = item.pubDate
       ? new Date(item.pubDate).toLocaleDateString('en-IN', { day:'numeric', month:'short' })
