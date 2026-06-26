@@ -1,8 +1,10 @@
 {
   "name": "Smart Dashboard V4",
   "short_name": "Dashboard",
-  "start_url": "./index_v4.html",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#1565c0",
   "background_color": "#1565c0",
   "icons": [
